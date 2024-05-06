@@ -1,0 +1,67 @@
+/* Your app custom styles here */
+.md .item-input:not(.item-input-outline) .item-content::before,
+.md .item-input:not(.item-input-outline).item-content::before {
+  background: transparent;
+}
+.bill-page {
+  background: #fff;
+}
+.bill-page .list .item-content {
+  padding-left: 0;
+}
+.bill-page .item-input {
+  max-width: 175px;
+  width: 100%;
+  background: #f3eeff;
+  border-radius: 5px;
+  line-height: 24px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.bill-page .percentage-slider .item-input {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+.bill-page .total-per-person {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bill-page.list .item-inner {
+  padding-right: 0;
+}
+.bill-page.list .item-input-with-value .item-floating-label {
+  color: #21242c;
+}
+.bill-page .item-content {
+  padding-left: 0;
+}
+.page {
+  background-color: #f5db54;
+}
+.main-list {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  width: 100%;
+}
+.main-page {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#submit-btn {
+  background: #21242c;
+  color: #fff;
+  margin: 0 auto;
+  width: 50%;
+}
+.text-right {
+  text-align: right;
+}

@@ -1,0 +1,150 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="if-not-md">Back</span>
+          </a>
+        </div>
+        <div class="title">Calculate Bill</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block block-strong inset list bill-page">
+        <h2 class="text-right">Bill: ${totalAmount}</h2>
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Number of People</div>
+                <div class="item-input">
+                  <select id="number-of-people">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="percentage-slider">
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Tip Percentage</div>
+                <div class="item-input">
+                  <input
+                    type="range"
+                    id="tip-percentage"
+                    min="0"
+                    max="100"
+                    value="0"
+                  />
+                  <span id="tip-percentage-value">0%</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Tip Amount</div>
+                <div class="item-input">
+                  <input
+                    type="number"
+                    name="tip-amount"
+                    id="tip-amount"
+                    placeholder="0"
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="total-per-person">
+              <span>Total Per Peson:</span>
+              <span id="total-per-person"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default function (props, { $f7, $on, $ }) {
+    // Get total amount from store
+    const totalAmount = $f7.store.getters.getAmount.value;
+    $on("pageInit", (e, page) => {
+      // Function to calculate tip amount and update UI
+      function updateTipAmount(tipPercentage = 0, setTipAmount) {
+        // Calculate tip amount
+        let tipAmount = 0;
+        if (tipPercentage) {
+          tipAmount = (totalAmount * tipPercentage) / 100;
+        }
+        // Update UI with tip percentage and tip amount
+        $("#tip-percentage-value").text(tipPercentage + "%");
+        if (tipAmount && setTipAmount) {
+          $("#tip-amount").val(tipAmount);
+        }
+        console.log(">>>tipAmount111:", tipAmount);
+        // Update total per person
+        const totalPerPerson =
+          (Number(totalAmount) + Number(tipAmount)) /
+          parseInt($("#number-of-people").val());
+        $("#total-per-person").text(totalPerPerson.toFixed(2));
+      }
+
+      // Event listener for tip percentage input change
+      $("#tip-percentage").on("input", function () {
+        // Get tip percentage value
+        const tipPercentage = parseInt($(this).val());
+        console.log(">>>tipPercentagenow", tipPercentage);
+        updateTipAmount(tipPercentage, true);
+      });
+
+      // Event listener for tip amount input change
+      $("#tip-amount").on("input", function () {
+        // Get tip amount value
+        const tip = parseFloat($(this).val().trim());
+        console.log(">>>tip", tip);
+
+        const tipAmount = Number.isNaN(tip) ? 0 : tip;
+        // Calculate tip percentage
+        const tipPercentage = (tipAmount * 100) / totalAmount;
+        console.log(">>>tipPercentage", tipPercentage);
+        console.log(">>>tipAmount", tipAmount);
+
+        // Update slider value
+        $("#tip-percentage").val(tipPercentage);
+
+        // Update UI
+        updateTipAmount(tipPercentage, false);
+      });
+
+      // Event listener for number of people input change
+      $("#number-of-people").on("change", function () {
+        // Update total per person
+        const tip = parseFloat($("#tip-amount").val().trim());
+        const tipAmount = Number.isNaN(tip) ? 0 : tip;
+        const totalPerPerson =
+          (Number(totalAmount) + tipAmount) / parseInt($(this).val());
+        $("#total-per-person").text(totalPerPerson.toFixed(2));
+      });
+
+      updateTipAmount();
+    });
+    // Return the render function
+    return $render;
+  }
+</script>
