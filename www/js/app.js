@@ -15,7 +15,7 @@ $("#submit-btn").on("click", function (e) {
   var totalAmount = $("#total-amount-input").val();
   if (totalAmount) {
     app.store.dispatch("setAmount", totalAmount);
-    app.views.main.router.navigate("/about/");
+    app.views.main.router.navigate("/bill/");
   } else {
     app.dialog.alert("Enter value to split bill");
   }

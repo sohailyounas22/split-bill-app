@@ -1,55 +1,7 @@
-/* Your app custom styles here */
-.md .item-input:not(.item-input-outline) .item-content::before,
-.md .item-input:not(.item-input-outline).item-content::before {
-  background: transparent;
-}
-.bill-page {
-  background: #fff;
-}
-.bill-page .list .item-content {
-  padding-left: 0;
-}
-.bill-page .item-input {
-  max-width: 175px;
-  width: 100%;
-  background: #f3eeff;
-  border-radius: 5px;
-  line-height: 24px;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-.bill-page .percentage-slider .item-input {
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px;
+.page {
+  background-color: #872ee6;
 }
 
-.bill-page .total-per-person {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.bill-page.list .item-inner {
-  padding-right: 0;
-}
-.bill-page.list .item-input-with-value .item-floating-label {
-  color: #21242c;
-}
-.bill-page .item-content {
-  padding-left: 0;
-}
-.page {
-  background-color: #f5db54;
-}
-.main-list {
-  background: #fff;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px;
-  width: 100%;
-}
 .main-page {
   display: flex;
   width: 100%;
@@ -57,11 +9,121 @@
   justify-content: center;
 }
 #submit-btn {
-  background: #21242c;
-  color: #fff;
-  margin: 0 auto;
-  width: 50%;
+  background: #18e6ce;
+  color: #000;
+  width: 36%;
+  margin-top: 16px;
 }
-.text-right {
-  text-align: right;
+
+.main-continer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  gap: 3rem;
+}
+.main-continer img {
+  max-width: 100%;
+  height: auto;
+  width: 300px;
+}
+
+.input-field label {
+  color: #fff !important;
+  font-size: 1rem;
+}
+.input-field input {
+  color: #fff !important;
+  font-size: 20px;
+  border-bottom: 1px solid;
+  line-height: 30px;
+  width: 100%;
+}
+.field-cont {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.navbar-bg {
+  background-color: #872ee6;
+}
+.navbar a,
+.navbar .title {
+  color: #fff !important;
+}
+.total-bill-amount {
+  height: 100px;
+  border-left: 4px solid #18e6ce;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  padding-left: 1rem;
+}
+.bill-page {
+  padding: 10px 30px;
+}
+.total-bill-amount .bill-text {
+  font-size: 1.3rem;
+}
+.total-bill-amount .text-amount {
+  font-size: 2rem;
+  color: #18e6ce;
+  display: flex;
+}
+select {
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 1rem;
+}
+.select-input {
+  position: relative;
+}
+.select-input::after {
+  content: "";
+  position: absolute;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff; /* Adjust color as needed */
+  color: #fff;
+  right: 0;
+  top: 50%;
+  transform: translateX(-50%);
+}
+.fields > .input-field {
+  margin-bottom: 1rem;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.per-person {
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 100%;
+}
+.bill-page .total-per-person {
+  display: flex;
+  align-items: start;
+  background: url(../assets/img/box.png) no-repeat right;
+  flex-direction: column;
+  height: 100px;
+  background-size: cover;
+  justify-content: center;
+  padding-left: 1rem;
+}
+input::placeholder {
+  color: #fff;
+}
+#tip-percentage-value {
+  min-width: 35px;
+  word-wrap: break-word;
+}
+span#total-per-person {
+  word-break: break-word;
 }

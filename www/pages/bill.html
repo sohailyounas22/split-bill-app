@@ -13,69 +13,65 @@
       </div>
     </div>
     <div class="page-content">
-      <div class="block block-strong inset list bill-page">
-        <h2 class="text-right">Bill: ${totalAmount}</h2>
-        <ul>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Number of People</div>
-                <div class="item-input">
-                  <select id="number-of-people">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select>
-                </div>
-              </div>
+      <div class="bill-page">
+        <div class="total-bill-amount">
+          <span class="bill-text">Total Bill Amount</span>
+          <div class="text-amount">
+            <span>$</span>
+            <span> ${totalAmount}</span>
+          </div>
+        </div>
+
+        <div class="fields">
+          <div class="input-field">
+            <label for="number-of-people">Select Number of People</label>
+            <div class="select-input">
+              <select id="number-of-people">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </div>
-          </li>
-          <li class="percentage-slider">
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Tip Percentage</div>
-                <div class="item-input">
-                  <input
-                    type="range"
-                    id="tip-percentage"
-                    min="0"
-                    max="100"
-                    value="0"
-                  />
-                  <span id="tip-percentage-value">0%</span>
-                </div>
-              </div>
+          </div>
+          <div class="input-field">
+            <label for="tip-percentage">Tip Percentage</label>
+            <div class="flex">
+              <input
+                type="range"
+                id="tip-percentage"
+                min="0"
+                max="100"
+                value="0"
+              />
+              <span id="tip-percentage-value">0%</span>
             </div>
-          </li>
-          <li>
-            <div class="item-content">
-              <div class="item-inner">
-                <div class="item-title label">Tip Amount</div>
-                <div class="item-input">
-                  <input
-                    type="number"
-                    name="tip-amount"
-                    id="tip-amount"
-                    placeholder="0"
-                  />
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="total-per-person">
-              <span>Total Per Peson:</span>
+          </div>
+          <div class="input-field">
+            <label for="tip-amount">Tip Amount</label>
+            <input
+              type="number"
+              name="tip-amount"
+              id="tip-amount"
+              placeholder="0"
+            />
+          </div>
+        </div>
+        <div class="total-per-person">
+          <div>
+            <div class="per-person">
+              <span>$</span>
               <span id="total-per-person"></span>
             </div>
-          </li>
-        </ul>
+            <span>Total Per Peson:</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -97,7 +93,6 @@
         if (tipAmount && setTipAmount) {
           $("#tip-amount").val(tipAmount);
         }
-        console.log(">>>tipAmount111:", tipAmount);
         // Update total per person
         const totalPerPerson =
           (Number(totalAmount) + Number(tipAmount)) /
@@ -105,11 +100,9 @@
         $("#total-per-person").text(totalPerPerson.toFixed(2));
       }
 
-      // Event listener for tip percentage input change
       $("#tip-percentage").on("input", function () {
         // Get tip percentage value
         const tipPercentage = parseInt($(this).val());
-        console.log(">>>tipPercentagenow", tipPercentage);
         updateTipAmount(tipPercentage, true);
       });
 
@@ -117,16 +110,12 @@
       $("#tip-amount").on("input", function () {
         // Get tip amount value
         const tip = parseFloat($(this).val().trim());
-        console.log(">>>tip", tip);
 
         const tipAmount = Number.isNaN(tip) ? 0 : tip;
         // Calculate tip percentage
         const tipPercentage = (tipAmount * 100) / totalAmount;
-        console.log(">>>tipPercentage", tipPercentage);
-        console.log(">>>tipAmount", tipAmount);
-
         // Update slider value
-        $("#tip-percentage").val(tipPercentage);
+        $("#tip-percentage").val(tipPercentage.toFixed(2));
 
         // Update UI
         updateTipAmount(tipPercentage, false);

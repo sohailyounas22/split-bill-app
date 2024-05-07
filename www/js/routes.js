@@ -4,7 +4,7 @@ var routes = [
     url: "./index.html",
   },
   {
-    path: "/about/",
-    componentUrl: "./pages/about.html",
+    path: "/bill/",
+    componentUrl: "./pages/bill.html",
   },
 ];
