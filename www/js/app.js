@@ -1,7 +1,7 @@
 var $ = Dom7;
 
 var app = new Framework7({
-  name: "test", // App name
+  name: "SplitBill", // App name
   theme: "auto", // Automatic theme detection
 
   el: "#app", // App root element
@@ -17,6 +17,6 @@ $("#submit-btn").on("click", function (e) {
     app.store.dispatch("setAmount", totalAmount);
     app.views.main.router.navigate("/bill/");
   } else {
-    app.dialog.alert("Enter value to split bill");
+    app.dialog.alert("Please enter the total bill amount before proceeding.");
   }
 });
